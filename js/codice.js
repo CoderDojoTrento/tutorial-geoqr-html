@@ -257,11 +257,19 @@ function mostraStato(){
             + "Tentativi falliti: " + Db.tentativiFalliti;
 
             if (configurazione.totaleDomande){
-                var restanti = configurazione.totaleDomande-Db.punteggio;
+                var restanti = configurazione.totaleDomande-Db.punteggio;                
                 if (restanti){
-                    var restano = restanti === 1  ? "resta" : "restano";
-                    var domande = restanti === 1  ? "domanda" : "domande";
-                    html += '<p>Ti ' + restano + ' ancora ' + restanti + ' ' + domande + ' da trovare.</p>';
+                    if (restanti < 0){
+                        console.error("Errore: sono state risposte più domande di quelle totali!");
+                        console.error("Db.punteggio=", Db.punteggio);
+                        console.error("configurazione=",configurazione);
+                        console.error("Controllare la configurazione in admin/js/configurazione.js");
+                        console.error("Db=",Db)
+                    } else {
+                        var restano = restanti === 1  ? "resta" : "restano";
+                        var domande = restanti === 1  ? "domanda" : "domande";
+                        html += '<p>Ti ' + restano + ' ancora ' + restanti + ' ' + domande + ' da trovare.</p>';
+                    }
                 } else {
                     html += '<p>Hai trovato tutte le domande !</p>';
                 }
