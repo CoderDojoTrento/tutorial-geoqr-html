@@ -9,16 +9,27 @@ Il progetto funziona completamente nel browser
 
 Quello che si trova nella cartella [server](server) sono in realtà delle pagine HTML di amministrazione, come per esempio resettare il punteggio corrente nel browser e generare codici QR.
 
+**DEMO TUTORIAL online**: https://coderdojotrento.github.io/iw2-tutorial/demo.html
+
 
 ## CSS
 
 Il CSS è responsive, con idee prese da [questo sito](https://internetingishard.com/html-and-css/responsive-design/)
 
+## Sorgente pagine
+
+
+### per utente 
 
 Indice: [index.html](index.html)
-
-Reset: [server/reset.html](server/reset.html)
 
 Domanda 1: [1-domanda.html](1-domanda.html)
 
 Domanda 2: [2-domanda.html](2-domanda.html)
+
+
+### amministrazione
+
+Generatore Codice QR: [server/genera-codici-qr.html](server/genera-codici-qr.html)
+Reset: [server/reset.html](server/reset.html)
+Demo: [demo.html](demo.html)
