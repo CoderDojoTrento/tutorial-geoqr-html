@@ -12,10 +12,6 @@ Quello che si trova nella cartella [server](server) sono in realtà delle pagine
 **DEMO TUTORIAL online**: https://coderdojotrento.github.io/iw2-tutorial/demo.html
 
 
-## CSS
-
-Il CSS è responsive, con idee prese da [questo sito](https://internetingishard.com/html-and-css/responsive-design/)
-
 ## Sorgente pagine
 
 
@@ -31,5 +27,15 @@ Domanda 2: [2-domanda.html](2-domanda.html)
 ### amministrazione
 
 Generatore Codice QR: [server/genera-codici-qr.html](server/genera-codici-qr.html)
+
 Reset: [server/reset.html](server/reset.html)
+
 Demo: [demo.html](demo.html)
+
+
+
+## Note tecniche
+
+### CSS
+
+Il CSS è responsive, con idee prese da [questo sito](https://internetingishard.com/html-and-css/responsive-design/)
