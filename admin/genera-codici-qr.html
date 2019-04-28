@@ -22,51 +22,20 @@
         </p>
 
         <fieldset>
-            <label>
-                Url
-                <input name="text" value="https://coderdojotrento.github.io/tutorial-geoqr-html/{i}-domanda.html" >
-                <br>                
-            </label>  
-            <label>
-                Titolo
-                <input name="title" value="La strada romana {i}" >
-                <br>                
-            </label>  
-            <label>
-                Sottotitolo
-                <input name="subTitle" value="coderdojotrento.github.io/tutorial-geoqr-html/{i}-domanda.html" >
-                <br>                
-            </label>  
-            
-            <label>
-                larghezza
-                <input name="width" value="300">
-                <br>
-            </label>  
-            <label>
-                Logo
-                <input name="logo" value="logo.png">
-                <br>
-            </label>  
-            <label>
-                    Nome file da generare
-                    <input name="nomefile" value="{i}-codice-qr.png">
-                    <br>
-            </label>              
-            <label>
-                    Quanti
-                    <input name="quanti" value="20">
-                    <br>
-            </label>  
-      
-            <br/>
-            <input id="genera" type="submit" name="submit" value="Genera codici QR">
-            
-
-            <button id="scarica" class="btn btn-primary">Scarica ZIP</button>
-
+            <label>Url</label> <input name="text" value="https://coderdojotrento.github.io/tutorial-geoqr-html/{i}-domanda.html" >
+            <label>Titolo</label>  <input name="title" value="Tutorial GeoQR / {i}" >
+            <label>Sottotitolo</label>  <input name="subTitle" value="coderdojotrento.github.io/tutorial-geoqr-html/{i}-domanda.html" >
+            <label>larghezza</label><input name="width" value="400">
+            <label> Logo </label> <input name="logo" value="logo.png">
+            <label>Nome file da generare</label> <input name="nomefile" value="{i}-codice-qr.png">
+            <label>Quanti </label>  <input name="quanti" value="2">
             
         </fieldset>
+
+        <div id="bottoni">
+            <button id="genera" type="submit" name="submit">Genera codici QR</button>
+            <button id="scarica" class="btn btn-primary">Scarica ZIP</button>
+        </div>
 
         <div id="qrcodes"></div>
                                 	

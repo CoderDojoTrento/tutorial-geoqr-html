@@ -2,6 +2,8 @@
 
 # Tutorial GeoQR e HTML
 
+![](img/codici-qr/0-codice-qr.png)
+
 **In questo README sono raccolti dettagli tecnici. Per una descrizione del tutorial, vedere** [coderdojotrento.it/geo1](https://www.coderdojotrento.it/geo1)
 
 
