@@ -2,16 +2,19 @@
 
 # Tutorial GeoQR e HTML
 
+**In questo README sono raccolti dettagli tecnici. Per una descrizione del tutorial, vedere** <a href="https://www.coderdojotrento.it/geo1" target="_blank">coderdojotrento.it/geo1</a>
+
+**DEMO TUTORIAL online**: <a href="https://coderdojotrento.github.io/tutorial-geoqr-html/demo.html" target="_blank">coderdojotrento.github.io/tutorial-geoqr-html/demo.html</a>
+
+
 ![](img/codici-qr/0-codice-qr.png)
 
-**In questo README sono raccolti dettagli tecnici. Per una descrizione del tutorial, vedere** [coderdojotrento.it/geo1](https://www.coderdojotrento.it/geo1)
 
+## Specifiche
 
 Il progetto funziona completamente nel browser
 
 Quello che si trova nella cartella [admin](admin) sono  delle pagine HTML di amministrazione, come per esempio resettare il punteggio corrente nel browser e generare codici QR.
-
-**DEMO TUTORIAL online**: https://coderdojotrento.github.io/tutorial-geoqr-html/demo.html
 
 
 ## Sorgente pagine
