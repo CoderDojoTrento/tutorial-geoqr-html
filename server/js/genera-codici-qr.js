@@ -27,7 +27,8 @@ genera.onclick = function() {
         if (!text){
             throw new Error("Non c'è la url !");
         }
-        params['text'] = i + "-domanda.html";
+        params['text'] = text.replace("{i}", i);
+        
         if (title){
             params['title'] = title.replace("{i}", i);
         }
