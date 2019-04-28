@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' 
+                content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+        <link rel="stylesheet" href="css/server-style.css">
+    
+        <script type="text/javascript" src="lib/easy.qrcode.min.js"> </script>
+        <script type="text/javascript" src="lib/jszip.min.js"> </script>
+        <script type="text/javascript" src="lib/FileSaver.min.js"> </script>      
+        <script type="text/javascript" src="js/genera-codici-qr.js" defer> </script>      
+
+        <title>Generatore codici QR</title>  
+    </head>
+    <body>
+    
+        <h1 class="pannello-amministrazione">La strada romana - pannello amministrazione</h1>        
+        <h1>Generatore codici QR</h1>    
+
+        <p>
+            E' possibile usare <span class="codice">{i}</span>  come segnaposto per i numeri.
+        </p>
+
+        <fieldset>
+            <label>
+                Url
+                <input name="text" value="https://www.coderdolomiti.it/web/iw2/{i}-domanda.html" >
+                <br>                
+            </label>  
+            <label>
+                Titolo
+                <input name="title" value="La strada romana {i}" >
+                <br>                
+            </label>  
+            <label>
+                Sottotitolo
+                <input name="subTitle" value="coderdolomiti.it/web/iw2/{i}-domanda.html" >
+                <br>                
+            </label>  
+            
+            <label>
+                larghezza
+                <input name="width" value="300">
+                <br>
+            </label>  
+            <label>
+                Logo
+                <input name="logo" value="logo.png">
+                <br>
+            </label>  
+            <label>
+                    Nome file da generare
+                    <input name="nomefile" value="{i}-codice-qr.png">
+                    <br>
+            </label>              
+            <label>
+                    Quanti
+                    <input name="quanti" value="20">
+                    <br>
+            </label>  
+      
+            <br/>
+            <input id="genera" type="submit" name="submit" value="Genera codici QR">
+            
+
+            <button id="scarica" class="btn btn-primary">Scarica ZIP</button>
+
+            
+        </fieldset>
+
+        <div id="qrcodes"></div>
+                                	
+</script>        
+    </body>
+</html>

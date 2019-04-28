@@ -1,0 +1,51 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name='viewport' 
+                content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+        <link rel="stylesheet" href="css/server-style.css">
+    
+        <title>La strada romana - secret user admin</title>  
+    </head>
+    <body>
+        <h1 class="pannello-amministrazione">La strada romana - pannello amministrazione</h1>        
+        <script>
+            function storageAvailable(type) {
+                var storage;
+                try {        
+                    storage = window[type];
+                    var x = '__storage_test__';
+                    storage.setItem(x, x);
+                    storage.removeItem(x);
+                    return true;
+                }
+                catch(e) {
+                    return e instanceof DOMException && (
+                        // everything except Firefox
+                        e.code === 22 ||
+                        // Firefox
+                        e.code === 1014 ||
+                        // test name field too, because code might not be present
+                        // everything except Firefox
+                        e.name === 'QuotaExceededError' ||
+                        // Firefox
+                        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+                        // acknowledge QuotaExceededError only if there's something already stored
+                        (storage && storage.length !== 0);
+                }
+            }
+
+            if (storageAvailable('localStorage')) {
+                localStorage.clear();    
+                document.write('<h1>Punteggio resettato !</h1>');
+            }
+            else {
+                document.write('<h1>Non riesco a resettare il punteggio  (vedere console) !</h1>');
+                console.error("il localStorage non è supportato in questo browser! Non posso salvare il punteggio!");                
+            }
+            
+        </script>
+        
+    </body>
+</html>

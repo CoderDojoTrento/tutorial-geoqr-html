@@ -1,0 +1,116 @@
+
+
+/* Mobile */
+@media only screen and (max-width: 400px) {
+    body {
+            max-width:100%;
+    }
+}
+
+/* Tablet & desktop */
+@media only screen and (min-width: 401px) {
+    body {
+          max-width:300px;
+    }
+}
+
+body {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+                                     
+}
+
+h1 {
+    text-align:center;
+}
+h2 {
+    text-align:center;
+}
+h3 {
+    text-align:center;
+}
+
+h4 {
+    text-align:center;
+}
+
+.al-centro {
+    min-width:100%; 
+    text-align:center;
+}
+
+img {
+    max-width:100%;
+}
+#messaggio {
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+#stato {
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+form {
+    text-align:left;
+}
+
+fieldset { 
+    border:0px;
+}
+
+label {
+
+    background:#f1e9d7;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:50px; 
+    padding-right:1px;
+
+    margin-bottom:10px;
+    position:relative;    
+    display:block;
+}
+
+input {
+    
+    position:absolute;
+    top:4px;
+    left:10px;   
+}
+
+#mappa iframe {
+    height:250px;
+}
+
+#infopoint {
+    padding-left:10px;
+    padding-right:10px;
+    
+    border:solid;
+    border-width:1px;
+    border-color:black;
+}
+#infopoint h4 {
+    text-align:center;
+}
+
+#footer {
+    text-align:center;    
+    max-width:100%;  
+    margin-top:60px;
+}
+
+#footer img {
+    max-width:95%;
+}
+
+
