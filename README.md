@@ -7,7 +7,7 @@
 
 Il progetto funziona completamente nel browser
 
-Quello che si trova nella cartella [server](server) sono in realtà delle pagine HTML di amministrazione, come per esempio resettare il punteggio corrente nel browser e generare codici QR.
+Quello che si trova nella cartella [admin](admin) sono  delle pagine HTML di amministrazione, come per esempio resettare il punteggio corrente nel browser e generare codici QR.
 
 **DEMO TUTORIAL online**: https://coderdojotrento.github.io/tutorial-geoqr-html/demo.html
 
@@ -26,12 +26,13 @@ Domanda 2: [2-domanda.html](2-domanda.html)
 
 ### amministrazione
 
+Demo: [demo.html](demo.html)
+
+File configurazione: [admin/configurazione.js](admin/configurazione.js)
+
 Generatore Codici QR: [server/genera-codici-qr.html](server/genera-codici-qr.html)
 
 Reset: [server/reset.html](server/reset.html)
-
-Demo: [demo.html](demo.html)
-
 
 
 ## CSS

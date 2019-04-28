@@ -1,3 +1,35 @@
+
+
+function creaConfigurazioneVuota(){
+    return {
+        "totaleDomande" : 0   // sconosciuto
+    }
+};
+
+/**
+ * Verifica la configurazione corrente e la ritorna. 
+ * Se qualcosa va storto, ritorna la configurazione di default.
+ */
+function verificaConfigurazione(){
+    try {
+        if (typeof configurazione == 'undefined'){
+            throw new Error("configurazione non dichiarata !");
+        }
+
+        if (!configurazione){
+            throw new Error("Configurazione vuota !");            
+        }
+        if (!configurazione["totaleDomande"]){
+            throw new Error("Non trovo totaleDomande !");            
+        }
+        return configurazione;
+    } catch (err){
+        console.error("Configurazione invalida, uso i default !", err);
+        return creaConfigurazioneVuota();
+    }
+}
+
+
 function storageAvailable(type) {
     var storage;
     try {        
@@ -23,10 +55,21 @@ function storageAvailable(type) {
     }
 }
 
-var Db = {
-    'punteggio':0,
-    'tentativiFalliti':0,
-    'corrette' : [],    
+
+function creaDbVuoto(){
+    return {
+        'punteggio':0,
+        'tentativiFalliti':0,
+        'corrette' : [],    
+    }
+}
+
+var Db = creaDbVuoto();
+
+function resetDb(){
+    Db = creaDbVuoto();
+    saveDb();
+    
 }
 
 function saveDb(){
@@ -67,11 +110,10 @@ function loadDb(){
             Db.corrette = [];
             scheduleSave = true;
         }
+        console.info("Db=", Db);
         if (scheduleSave){
             saveDb();
         }
-        
-        console.info("Db=", Db);
         
       } else {
           console.error("il localStorage non è supportato in questo browser! Non posso salvare il punteggio!");
@@ -79,7 +121,9 @@ function loadDb(){
 
 }
 
-
+/** Ritorna il codice della pagina (es con '3fxs-domanda.html' ritorna '3'),
+ *  La pagina *DEVE* essere una domanda o risposta, altrimenti lancia un eccezione
+*/
 function prendiCodicePagina(){
     var pname = window.location.pathname;
     var start = pname.lastIndexOf('/');
@@ -98,24 +142,53 @@ function prendiCodicePagina(){
     return pname.substring(start+1, end);
 }
 
+/**
+ * Ritorna un numero di pagina e *Non* lancia mai eccezioni :
+ *    0: indice
+ * >= 1: domanda o risposta
+ *   -1: altra pagina
+ */
+function prendiNumeroPagina(){
+    var pname = window.location.pathname;
+    if (pname.lastIndexOf('/index.html') >= 0 || pname.endsWith('/')){
+        return 0;
+    };
 
-
-
-function mostraStato(){
-    var stato = document.getElementById('stato');
-    if (!stato) {
-        console.info("non trovo il contenitore per lo stato");
-    } else {
-        try {
-            if (!storageAvailable('localStorage')){
-                throw new Error("localStorage non disponibile!");
-            }        
-            stato.innerHTML = "Risposte corrette : " + Db.punteggio + '<br/>'
-                            + "Tentativi falliti: " + Db.tentativiFalliti;
-        } catch (err){
-            console.error("Errore nel mostrare lo stato !", err);
+    var start = pname.lastIndexOf('/');    
+    if (start === -1){
+        return -1;
+    }
+    var end = pname.indexOf('-domanda.html');    
+    if (end === -1){
+        end = pname.indexOf('-risposta.html');    
+        if (end === -1){
+            return -1;
         }
+    }
+    var ret = parseInt(pname.substring(start+1, end));
+    if (!ret){
+        return -1;
+    }
+
+    return ret;
+}
+
+/**
+ * Ritorna un valore tra i seguenti: 
+ *  "RISPOSTA" | "DOMANDA" | "INDICE" | "ALTRO"
+ * 
+ * *NON* lancia mai eccezioni.
+ */
+function prendiTipoPagina(){
+    var pname = window.location.pathname;
+    if (pname.lastIndexOf('-risposta.html') >= 0){
+        return "RISPOSTA";
+    } else if (pname.lastIndexOf('-domanda.html') >= 0){
+        return "DOMANDA";
+    } else if (pname.lastIndexOf('/index.html') >= 0 || pname.endsWith('/')){
+        return "INDICE";
     } 
+    return "ALTRO";
 }
 
 
@@ -162,11 +235,64 @@ function mostraMappa(){
     }    
 }
 
+
+function mostraStato(){
+    var stato = document.getElementById('stato');
+    if (!stato) {
+        console.info("non trovo il contenitore per lo stato");
+    } else {
+        try {
+            var i = prendiNumeroPagina();
+            
+
+            console.log('numero pagina = ', i);
+
+            var html = '';
+
+            if (!storageAvailable('localStorage')){
+                throw new Error("localStorage non disponibile!");
+            }       
+
+            html += "Risposte corrette : " + Db.punteggio + '<br/>'
+            + "Tentativi falliti: " + Db.tentativiFalliti;
+
+            if (configurazione.totaleDomande){
+                var restanti = configurazione.totaleDomande-Db.punteggio;
+                if (restanti){
+                    var restano = restanti === 1  ? "resta" : "restano";
+                    var domande = restanti === 1  ? "domanda" : "domande";
+                    html += '<p>Ti ' + restano + ' ancora ' + restanti + ' ' + domande + ' da trovare.</p>';
+                } else {
+                    html += '<p>Hai trovato tutte le domande !</p>';
+                }
+            } else {
+                console.error("Configurazione invalida, non riesco a determinare quante domande rimangono.");
+            }
+            
+             
+            stato.innerHTML = html;
+        } catch (err){
+            console.error("Errore nel mostrare lo stato !", err);
+        }
+    } 
+}
+
+
 function mostraFooter(){
     var footer = document.getElementById('footer');
     if (footer){
         try {
-            footer.innerHTML = '<a href="https://www.coderdolomiti.it/iw2"> <img src="img/loghi/footer.png"></a>'
+            html = '';
+            if (prendiTipoPagina() === 'INDICE') {
+                // un po' hacky ma pazienza
+                if (configurazione.totaleDomande){
+                     html += '<p style="margin-top:-40px; margin-bottom:60px; ">Nel percorso ci sono ' + configurazione.totaleDomande +' domande da cercare.</p>'
+                } else {
+                    console.error("Configurazione invalida! Non riesco a mostrare il totaleDomande");
+                }
+            }
+            html += '<a href="https://www.coderdolomiti.it/iw2"> <img src="img/loghi/footer.png"></a>';
+            footer.innerHTML = html;
         } catch (err){
             console.error("Errore nel settare il footer !", err);
         }
@@ -191,6 +317,8 @@ setTimeout(function () {
     })  
 }, 500);
 
+configurazione = verificaConfigurazione();
+console.info("La configurazione è ", configurazione);
 loadDb();
 mostraStato();
 mostraMappa();
