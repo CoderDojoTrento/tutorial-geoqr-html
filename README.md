@@ -33,7 +33,7 @@ Domanda 2: [2-domanda.html](2-domanda.html)
 
 Demo: [demo.html](demo.html)
 
-File configurazione: [admin/configurazione.js](admin/js/configurazione.js)
+File configurazione: [admin/js/configurazione.js](admin/js/configurazione.js)
 
 Generatore Codici QR: [server/genera-codici-qr.html](server/genera-codici-qr.html)
 
