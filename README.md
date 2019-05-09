@@ -35,9 +35,9 @@ Demo: [demo.html](demo.html)
 
 File configurazione: [admin/js/configurazione.js](admin/js/configurazione.js)
 
-Generatore Codici QR: [server/genera-codici-qr.html](server/genera-codici-qr.html)
+Generatore Codici QR: [admin/genera-codici-qr.html](server/genera-codici-qr.html)
 
-Reset: [server/reset.html](server/reset.html)
+Reset: [admin/reset.html](admin/reset.html)
 
 
 ## CSS
